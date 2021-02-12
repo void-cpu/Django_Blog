@@ -6,8 +6,32 @@
 from rest_framework import serializers
 from .models import *
 
+
 class UserSerializers_all:
-    class UserSerializers(serializers.ModelSerializer):
+    class Srlist(serializers.ModelSerializer):
+        class Meta:
+            model = UserModels
+            fields = '__all__'
+
+    class UserCreate(serializers.ModelSerializer):
+        phone = serializers.ReadOnlyField(read_only=True)
+        avatar = serializers.FileField(read_only=True)
+
+        class Meta:
+            model = UserModels
+            fields = '__all__'
+
+    class UserUpdate(serializers.ModelSerializer):
+        pass_word = serializers.ReadOnlyField(read_only=True)
+
+        class Meta:
+            model = UserModels
+            fields = '__all__'
+
+    class UserReadOnly(serializers.ModelSerializer):
+        user_name = pass_word = phone = serializers.ReadOnlyField(read_only=True)
+        avatar = serializers.FileField(read_only=True)
+
         class Meta:
             model = UserModels
             fields = '__all__'

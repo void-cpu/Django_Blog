@@ -7,6 +7,7 @@ class UserModels(BaseModels):
     user_name = models.CharField("用户名", max_length=20, unique=True)
     pass_word = models.CharField("用户密码", max_length=300)
     phone = models.CharField("电话", max_length=30, unique=True, null=True, blank=True)
+    avatar = models.ImageField('头像', null=True, upload_to='img', blank=True)
 
     class Meta:
         verbose_name = "用户信息"
