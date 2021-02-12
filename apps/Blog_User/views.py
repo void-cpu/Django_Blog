@@ -57,16 +57,23 @@ class UserViewSet(ModelViewSet):
 
     @action(methods=['put'], detail=True)
     def set_password(self, request, pk=None):
+        phone = request.data.get("phone")
         password, userNewPassword, userNewAgentPassword = request.data.get('password'), \
                                                           request.data.get("userNewPassword"), \
                                                           request.data.get("userNewAgentPassword")
 
-        if not UserViewSet.is_valid(password, userNewPassword, userNewAgentPassword):
+        if not UserViewSet.is_valid(phone, password, userNewPassword, userNewAgentPassword):
             return Response({"default": Static_Message.Passing_Error.value}, status=status.HTTP_400_BAD_REQUEST)
         if UserViewSet.same_code(a_password=userNewPassword, b_password=userNewAgentPassword):
-            _object = UserModels.objects.get(id=pk)
+            try:
+                if pk is not None:
+                    _object = UserModels.objects.get(id=pk)
+                else:
+                    _object = UserModels.objects.get(phone=phone)
+            except UserModels.DoesNotExist:
+                return Response({"default": Static_Message.info_Dont_Found.value}, status=status.HTTP_401_UNAUTHORIZED)
             if check_password(password, _object.pass_word):
-                _object.password = make_password(userNewPassword)
+                _object.pass_word = make_password(userNewPassword)
                 _object.save()
                 return Response(UserSerializers_all.Srlist(_object, many=False).data, status=status.HTTP_201_CREATED)
             else:
