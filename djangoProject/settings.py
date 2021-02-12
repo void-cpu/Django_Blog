@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.Base_app.apps.BaseAppConfig',
     'apps.Blog.apps.BlogConfig',
     'apps.Blog_User.apps.BlogUserConfig',
+    'pygments',
 ]
 
 MIDDLEWARE = [
