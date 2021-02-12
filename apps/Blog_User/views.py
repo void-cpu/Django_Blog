@@ -4,12 +4,13 @@ from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from .Serializers import *
 from ..Base_app.views import Static_Message, BaseViewSet
 
 
-class UserViewSet(BaseViewSet):
+class UserViewSet(BaseViewSet, CacheResponseMixin):
     """角色信息管理"""
     queryset = UserModels.objects.all()
     serializer_class = UserSerializers_all.Srlist
