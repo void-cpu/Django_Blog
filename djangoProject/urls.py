@@ -9,7 +9,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework.documentation import include_docs_urls
 
-# from apps.urls import routers
+from apps.urls import routers
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -24,6 +24,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(routers.urls), name="apis"),
     # api doc
     path('doc_01/', schema_view.with_ui('redoc', cache_timeout=0)),
     path('doc_02/', schema_view.with_ui('swagger', cache_timeout=0)),
