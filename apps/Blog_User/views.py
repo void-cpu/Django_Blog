@@ -7,23 +7,13 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from .Serializers import *
-from ..Base_app.views import Static_Message
+from ..Base_app.views import Static_Message, BaseViewSet
 
 
-class UserViewSet(ModelViewSet):
-    """
-    角色信息管理
-    """
+class UserViewSet(BaseViewSet):
+    """角色信息管理"""
     queryset = UserModels.objects.all()
     serializer_class = UserSerializers_all.Srlist
-
-    @staticmethod
-    def is_valid(*args):
-        return all([*args])
-
-    @staticmethod
-    def same_code(a_password, b_password):
-        return a_password == b_password
 
     def get_serializer_class(self):
         # 根据请求类型动态变更serializer
