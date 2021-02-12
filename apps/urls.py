@@ -10,6 +10,6 @@ from apps.Blog_User.views import (UserViewSet)
 
 routers = DefaultRouter()
 routers.register('User', UserViewSet, basename="用户信息管理")
-routers.register('Tag', CategoryViewSet, basename="分类信息管理")
+routers.register('Cate', CategoryViewSet, basename="分类信息管理")
 routers.register("Tag", TagViewSet, basename="标签信息管理")
 routers.register("Article", ArticleViewSet, basename="文章信息管理")
