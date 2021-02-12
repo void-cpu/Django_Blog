@@ -5,7 +5,11 @@
 # @Software: PyCharm
 from rest_framework.routers import DefaultRouter
 
+from apps.Blog.views import CategoryViewSet, TagViewSet, ArticleViewSet
 from apps.Blog_User.views import (UserViewSet)
 
 routers = DefaultRouter()
-routers.register('User', UserViewSet, basename="角色信息管理")
+routers.register('User', UserViewSet, basename="用户信息管理")
+routers.register('Tag', CategoryViewSet, basename="分类信息管理")
+routers.register("Tag", TagViewSet, basename="标签信息管理")
+routers.register("Article", ArticleViewSet, basename="文章信息管理")

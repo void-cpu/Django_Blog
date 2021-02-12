@@ -11,14 +11,6 @@ STATUS_CHOICES = (
     ('d', '草稿'),
     ('p', '发表'),
 )
-COMMENT_STATUS = (
-    ('o', '打开'),
-    ('c', '关闭'),
-)
-TYPE = (
-    ('a', '文章'),
-    ('p', '页面'),
-)
 
 
 class Category(BaseModels):
@@ -55,8 +47,6 @@ class Article(BaseModels):
     title = models.CharField('标题', max_length=200, unique=True)
     body = models.TextField('正文')
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
-    comment_status = models.CharField('评论状态', max_length=1, choices=COMMENT_STATUS, default='o')
-    type = models.CharField('类型', max_length=1, choices=TYPE, default='a')
     views = models.PositiveIntegerField('浏览量', default=0)
     author = models.ForeignKey(UserModels, verbose_name='作者', blank=False, null=False, on_delete=models.CASCADE)
     article_order = models.IntegerField('排序,数字越大越靠前', blank=False, null=False, default=0)
@@ -67,6 +57,6 @@ class Article(BaseModels):
         return self.title
 
     class Meta:
-        ordering = ['-create_time', '-update_time']
+        ordering = ['-create_time', '-update_time', 'views']
         verbose_name = "文章"
         verbose_name_plural = verbose_name
