@@ -1,3 +1,5 @@
+from random import randint
+
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import status
 from rest_framework.decorators import action
@@ -80,3 +82,21 @@ class UserViewSet(ModelViewSet):
                 return Response({"default": Static_Message.Info_Error.value}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({"default": Static_Message.Info_Error.value}, status=status.HTTP_401_UNAUTHORIZED)
+
+    @action(methods=['get'], detail=True)
+    def set_phone_code(self, request, pk=None):
+        phone = request.data.get("phone")
+        if UserViewSet.is_valid(phone):
+            return Response({"phone": phone, "message": randint(10000, 999999)}, status=status.HTTP_200_OK)
+        else:
+            return Response({"default": Static_Message.Passing_Error.value}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['post'], detail=True)
+    def get_phone_code(self, request, pk=None):
+        phone = request.data.get("phone")
+        Get_Phone, Set_Phone = request.data.get('Get_Phone'), request.data.get('Set_Phone')
+        if UserViewSet.is_valid(phone, Get_Phone, Set_Phone):
+            _is_Bool = UserViewSet.same_code(a_password=Get_Phone, b_password=Set_Phone)
+            return Response({'phone': phone, "message": _is_Bool}, status=status.HTTP_200_OK)
+        else:
+            return Response({"default": Static_Message.Passing_Error.value}, status=status.HTTP_400_BAD_REQUEST)
