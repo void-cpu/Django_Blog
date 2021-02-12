@@ -30,4 +30,4 @@ urlpatterns = [
     path('doc_02/', schema_view.with_ui('swagger', cache_timeout=0)),
     path('doc_03/', include_docs_urls(title="接口文档", authentication_classes=[], permission_classes=[])),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
