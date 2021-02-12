@@ -7,12 +7,28 @@ from apps.Blog_User.models import UserModels
 LEXERS = [item for item in get_all_lexers() if item[1]]
 LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
 
+STATUS_CHOICES = (
+    ('d', '草稿'),
+    ('p', '发表'),
+)
+COMMENT_STATUS = (
+    ('o', '打开'),
+    ('c', '关闭'),
+)
+TYPE = (
+    ('a', '文章'),
+    ('p', '页面'),
+)
+
 
 class Category(BaseModels):
-    name = models.CharField("分类名", max_length=30)
+    name = models.CharField("分类名", max_length=30, unique=True)
     avatar = models.ImageField('显示图片', null=True, upload_to='Category_img', blank=True)
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
     author = models.ForeignKey(UserModels, verbose_name='持有人', blank=False, null=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.author}:{self.name}"
 
     class Meta:
         ordering = ['-create_time', '-update_time']
@@ -21,9 +37,12 @@ class Category(BaseModels):
 
 
 class Tag(BaseModels):
-    name = models.CharField("分类名", max_length=30)
+    name = models.CharField("标签名", max_length=30)
     avatar = models.ImageField('显示图片', null=True, upload_to='Category_img', blank=True)
     author = models.ForeignKey(UserModels, verbose_name='持有人', blank=False, null=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}:{self.author}"
 
     class Meta:
         ordering = ['-create_time', '-update_time']
@@ -33,18 +52,6 @@ class Tag(BaseModels):
 
 class Article(BaseModels):
     """文章"""
-    STATUS_CHOICES = (
-        ('d', '草稿'),
-        ('p', '发表'),
-    )
-    COMMENT_STATUS = (
-        ('o', '打开'),
-        ('c', '关闭'),
-    )
-    TYPE = (
-        ('a', '文章'),
-        ('p', '页面'),
-    )
     title = models.CharField('标题', max_length=200, unique=True)
     body = models.TextField('正文')
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
