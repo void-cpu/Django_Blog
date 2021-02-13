@@ -6,6 +6,7 @@
 from rest_framework.routers import DefaultRouter
 
 from apps.Blog.views import CategoryViewSet, TagViewSet, ArticleViewSet
+from apps.BlogAnother.views import Links_yViewSet, InStationMessages_yViewSet, Messages_yViewSet
 from apps.Blog_User.views import (UserViewSet)
 
 routers = DefaultRouter()
@@ -13,3 +14,6 @@ routers.register('User', UserViewSet, basename="用户信息管理")
 routers.register('Cate', CategoryViewSet, basename="分类信息管理")
 routers.register("Tag", TagViewSet, basename="标签信息管理")
 routers.register("Article", ArticleViewSet, basename="文章信息管理")
+routers.register("Links", Links_yViewSet, basename="广告信息管理")
+routers.register("InStationMessages", InStationMessages_yViewSet, basename="站内消息信息管理")
+routers.register('Messages', Messages_yViewSet, basename="评论消息信息管理")
