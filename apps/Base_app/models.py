@@ -10,3 +10,11 @@ class BaseModels(models.Model):
 
     class Meta:
         abstract = True
+
+
+class LinkShowType(models.TextChoices):
+    I = ('i', '首页')
+    L = ('l', '列表页')
+    P = ('p', '文章页面')
+    A = ('a', '全站')
+    S = ('s', '友情链接页面')

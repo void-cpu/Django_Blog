@@ -1,7 +1,7 @@
 from django.db import models
 
-from apps.Base_app.models import BaseModels
-from apps.Blog.models import LinkShowType, Article
+from apps.Base_app.models import BaseModels, LinkShowType
+from apps.Blog.models import Article
 from apps.Blog_User.models import UserModels
 
 
