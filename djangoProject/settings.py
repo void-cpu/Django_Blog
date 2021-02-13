@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.Blog_User.apps.BlogUserConfig',
     'pygments',
     'django_filters',
+    'apps.BlogAnother.apps.BloganotherConfig',
 ]
 
 MIDDLEWARE = [
