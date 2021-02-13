@@ -25,11 +25,11 @@ class Links(BaseModels):
 
 class InStationMessages(BaseModels):
     """站内消息通知"""
-    name = models.CharField("标题", max_length=100)
-    title = models.TextField("内容", max_length=1000, null=True, blank=True)
+    name = models.CharField("标题", max_length=30)
+    title = models.TextField("内容", max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name}: {self.title[30]}"
+        return f"{self.name}"
 
     class Meta:
         db_table = "InStationMessages"
@@ -51,3 +51,14 @@ class Message(BaseModels):
         verbose_name = "消息评论"
         verbose_name_plural = verbose_name
         ordering = ['-views', '-create_time', '-update_time']
+
+
+class UserMessages_Set_Get(BaseModels):
+    user = models.ForeignKey(UserModels, on_delete=models.SET_NULL, verbose_name="用户外键", null=True)
+    name = models.CharField("标题", max_length=100)
+    title = models.TextField("内容", max_length=1000, null=True, blank=True)
+    Safe = models.CharField("用户已读/未读状态", max_length=20, choices=(("y", "已读"), ("n", "未读")), default="n")
+
+    class Meta:
+        verbose_name = "用户收件箱"
+        verbose_name_plural = verbose_name

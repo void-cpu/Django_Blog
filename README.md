@@ -1,6 +1,19 @@
 ## My Blog 
 
-> 本项目为一个个人的网站的后台程序的模板（2021年2月13日进行开发开发中）
+> 本项目为一个个人的网站的后台程序的模板（2021年2月13日进行开发开发中），本模板使用的数据库为sqllite， 如果使用mysql 的话请将settings文件的数据库配置文件改为
+>
+> ```python
+> DATABASES = {
+>     'default': {
+>         'ENGINE': 'django.db.backends.mysql',
+>         'NAME': 'cat',     # 数据库名
+>         'USER': 'root',     # 用户名              
+>         'PASSWORD': 'jiujiu99',  # 密码
+>         'HOST': '127.0.0.1',  
+>         'PORT': '3306',
+>     }
+> }
+> ```
 
 基本功能
 
@@ -48,3 +61,7 @@
   - swagger 风格的api接口文档
   - redoc 风格的api接口文档
   - drf 风格的api接口文档
+- 后台
+  - 用户名：adminBlog
+  - 密码：admin
+
