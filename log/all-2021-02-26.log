@@ -1,0 +1,15 @@
+[2021-02-26 00:51:18,096] [autoreload.py:617] [autoreload:run_with_reloader] [INFO]- Watching for file changes with StatReloader
+[2021-02-26 00:51:21,236] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /api/UserMessages/13/ HTTP/1.1" 200 17697
+[2021-02-26 00:51:21,266] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 304 0
+[2021-02-26 00:51:21,285] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+[2021-02-26 00:51:21,296] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+[2021-02-26 00:51:21,304] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+[2021-02-26 00:51:21,307] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+[2021-02-26 00:51:21,316] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,238] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /api/UserMessages/13/ HTTP/1.1" 200 17697
+[2021-02-26 00:51:22,263] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,264] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,265] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,269] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,272] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+[2021-02-26 00:51:22,275] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
