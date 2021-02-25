@@ -1,0 +1,8 @@
+[2021-03-07 23:24:56,436] [autoreload.py:617] [autoreload:run_with_reloader] [INFO]- Watching for file changes with StatReloader
+[2021-03-07 23:25:11,290] [autoreload.py:617] [autoreload:run_with_reloader] [INFO]- Watching for file changes with StatReloader
+[2021-03-07 23:25:46,731] [autoreload.py:617] [autoreload:run_with_reloader] [INFO]- Watching for file changes with StatReloader
+[2021-03-07 23:26:20,403] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /admin/ HTTP/1.1" 302 0
+[2021-03-07 23:26:20,620] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3742
+[2021-03-07 23:26:20,830] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 200 115997
+[2021-03-07 23:26:20,880] [basehttp.py:157] [basehttp:log_message] [INFO]- "GET /static/admin/simpleui-x/img/bg.svg HTTP/1.1" 200 9547
+[2021-03-07 23:26:21,345] [log.py:224] [log:log_response] [WARNING]- Not Found: /favicon.ico
