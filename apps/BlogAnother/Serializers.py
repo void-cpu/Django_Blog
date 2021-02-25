@@ -6,6 +6,7 @@
 from rest_framework import serializers
 
 from .models import *
+from ..Blog.Serializers import ArticleSerializers
 from ..Blog_User.Serializers import UserSerializers_all
 
 
@@ -22,6 +23,9 @@ class InStationMessagesSerializers(serializers.ModelSerializer):
 
 
 class MessagesSerializers(serializers.ModelSerializer):
+    Article = ArticleSerializers()
+    user = UserSerializers_all.Srlist()
+
     class Meta:
         model = Message
         fields = '__all__'
@@ -29,6 +33,8 @@ class MessagesSerializers(serializers.ModelSerializer):
 
 class UserMessages_Set_Get_List(serializers.ModelSerializer):
     """此序列化器是默认的序列化器"""
+    user = UserSerializers_all.Srlist()
+
     class Meta:
         model = UserMessages_Set_Get
         fields = '__all__'
@@ -36,7 +42,7 @@ class UserMessages_Set_Get_List(serializers.ModelSerializer):
 
 class UserMessages_Set_Get_UpDate(serializers.ModelSerializer):
     """此序列化器是进行修改已读和未读状态的序列化器"""
-    user = UserSerializers_all.UserReadOnly(read_only=True)
+    user = UserSerializers_all.Srlist()
     name = serializers.ReadOnlyField(read_only=True)
     title = serializers.ReadOnlyField(read_only=True)
 

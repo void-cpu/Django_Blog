@@ -42,7 +42,8 @@ class Message(BaseModels):
     Article = models.ForeignKey(Article, on_delete=models.DO_NOTHING, verbose_name="文章关联信息")
     user = models.ForeignKey(UserModels, on_delete=models.DO_NOTHING, verbose_name="用户关联信息")
     name = models.CharField("内容", max_length=100)
-    to_users = models.ForeignKey('self', on_delete=models.DO_NOTHING, blank=True, verbose_name='回复评论', help_text="回复评论")
+    to_users = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name='回复评论',
+                                 help_text="回复评论")
     views = models.PositiveIntegerField('点赞数', default=0)
     safe = models.BooleanField("状态(已读/未读)", default=False)
 

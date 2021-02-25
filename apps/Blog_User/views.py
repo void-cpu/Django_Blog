@@ -1,12 +1,14 @@
 from random import randint
 
 from django.contrib.auth.hashers import make_password, check_password
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from .Serializers import *
+from ..Base_app.Pagination import BasePagination
 from ..Base_app.views import Static_Message, BaseViewSet
 
 
@@ -14,6 +16,12 @@ class UserViewSet(BaseViewSet, CacheResponseMixin):
     """角色信息管理"""
     queryset = UserModels.objects.all()
     serializer_class = UserSerializers_all.Srlist
+    pagination_class = BasePagination
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = {
+        "user_name": ["icontains", "iexact"],
+        "phone": ["icontains", "iexact"],
+    }
 
     def get_serializer_class(self):
         # 根据请求类型动态变更serializer

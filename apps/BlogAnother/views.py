@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.decorators import action
 from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
@@ -13,7 +11,11 @@ class Links_yViewSet(ReadOnlyModelViewSet, CacheResponseMixin):
     serializer_class = LinksSerializers
     pagination_class = BasePagination
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ("name", "is_enable", "show_type")
+    filter_fields = {
+        "name": ["icontains", "iexact"],
+        "is_enable": ["exact"],
+        "show_type": ['exact']
+    }
 
 
 class InStationMessages_yViewSet(ReadOnlyModelViewSet, CacheResponseMixin):
@@ -21,7 +23,10 @@ class InStationMessages_yViewSet(ReadOnlyModelViewSet, CacheResponseMixin):
     serializer_class = InStationMessagesSerializers
     pagination_class = BasePagination
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ("name",)
+    filter_fields = {
+        "name": ["icontains", "iexact"],
+        "title": ["icontains", "iexact"],
+    }
 
 
 class Messages_yViewSet(ModelViewSet, CacheResponseMixin):
@@ -29,14 +34,19 @@ class Messages_yViewSet(ModelViewSet, CacheResponseMixin):
     serializer_class = MessagesSerializers
     pagination_class = BasePagination
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ("Article", 'user', 'safe')
+    filter_fields = {
+        "Article": ["exact"],
+        'user': ["exact"],
+        'safe': ["exact"],
+        'name': ["icontains", "iexact"],
+        "to_users": ["exact"],
+    }
 
 
 class UserMessage_Set_Get_ViewSet(ModelViewSet):
     queryset = UserMessages_Set_Get.objects.all()
     serializer_class = UserMessages_Set_Get_List
     pagination_class = BasePagination
-
     filter_backends = [DjangoFilterBackend]
     filter_fields = {
         "user": ["exact"],
