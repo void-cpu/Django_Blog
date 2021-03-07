@@ -1,5 +1,5 @@
 from random import randint
-
+from django.core.cache import cache
 from django.contrib.auth.hashers import make_password, check_password
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
@@ -85,16 +85,22 @@ class UserViewSet(BaseViewSet, CacheResponseMixin):
     def set_phone_code(self, request, pk=None):
         phone = request.data.get("phone")
         if UserViewSet.is_valid(phone):
-            return Response({"phone": phone, "message": randint(10000, 999999)}, status=status.HTTP_200_OK)
+            code = randint(10000, 999999)
+            cache.set(phone, code, 60)
+            # print(cache.has_key(phone), cache.get(phone))
+            return Response({"phone": phone, "message": "successfully"}, status=status.HTTP_200_OK)
         else:
-            return Response({"default": Static_Message.Passing_Error.value}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"default": Static_Message.Passing_Error}, status=status.HTTP_400_BAD_REQUEST)
 
     @action(methods=['post'], detail=True)
     def get_phone_code(self, request, pk=None):
         phone = request.data.get("phone")
-        Get_Phone, Set_Phone = request.data.get('Get_Phone'), request.data.get('Set_Phone')
-        if UserViewSet.is_valid(phone, Get_Phone, Set_Phone):
+        Get_Phone = request.data.get('Get_Phone')
+        # print(cache.has_key(phone))
+        # print(cache.get(phone), Get_Phone, str(cache.get(phone)) == str(Get_Phone))
+        if UserViewSet.is_valid(phone, Get_Phone):
+            Set_Phone = str(cache.get(phone)) if cache.has_key(phone) else str(None)
             _is_Bool = UserViewSet.same_code(a_password=Get_Phone, b_password=Set_Phone)
             return Response({'phone': phone, "message": _is_Bool}, status=status.HTTP_200_OK)
         else:
-            return Response({"default": Static_Message.Passing_Error.value}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"default": Static_Message.Passing_Error}, status=status.HTTP_400_BAD_REQUEST)
